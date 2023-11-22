@@ -12,7 +12,7 @@ const Navbar = () => {
         <Link href="/" className={styles.logo}>
           <Logo />
 
-          <span>Sanctum</span>
+          <span>Nyé</span>
         </Link>
 
         <div className="flex gap-x-4">
@@ -20,7 +20,7 @@ const Navbar = () => {
             href={"/organization"}
             className={`${
               pathname?.includes("organization") && "border-b border-b-black"
-            } p-2 text-orange`}
+            } p-2 `}
           >
             For Organization
           </Link>
