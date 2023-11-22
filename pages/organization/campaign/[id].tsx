@@ -3,7 +3,6 @@ import BigCampaignCard from "../../../components/organization/BigCampaignCard";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import DonationHistory from "../../../components/organization/DonationHistory";
-import { useNetwork } from "wagmi";
 
 const ViewCampaign = () => {
   const router = useRouter();

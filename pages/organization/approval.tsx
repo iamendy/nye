@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAccount } from "wagmi";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../../components/icons";
 import { ApproveCard } from "../../components/organization";

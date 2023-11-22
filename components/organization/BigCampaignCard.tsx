@@ -27,9 +27,9 @@ const BigCampaignCard = ({
 
   const { data: camps } = useContractRead({
     //@ts-ignore
-    address: connect?.sanctum?.[chain?.id]?.address,
+    address: connect?.nye?.address,
     //@ts-ignore
-    abi: connect?.sanctum?.[chain?.id]?.abi,
+    abi: connect?.nye?.abi,
     functionName: "getCampaignDonors",
     args: [campaign?.id],
   });
@@ -55,9 +55,9 @@ const BigCampaignCard = ({
   //blockchain
   const { config, refetch } = usePrepareContractWrite({
     //@ts-ignore
-    address: connect?.sanctum?.[chain?.id]?.address,
+    address: connect?.nye?.address,
     //@ts-ignore
-    abi: connect?.sanctum?.[chain?.id]?.abi,
+    abi: connect?.nye?.abi,
     functionName: "withdrawDonation",
     args: [campaign?.id],
     enabled: false,

@@ -45,7 +45,7 @@ const Index = () => {
     );
   }
 
-  if (!org?.isVerified) {
+  if (!org?.isApproved) {
     return <AwaitingCard />;
   }
 

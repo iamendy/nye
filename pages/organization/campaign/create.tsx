@@ -53,9 +53,9 @@ const Create = () => {
     isSuccess: IsRefreshed,
   } = usePrepareContractWrite({
     //@ts-ignore
-    address: connect?.sanctum?.[chain?.id]?.address,
+    address: connect?.nye?.address,
     //@ts-ignore
-    abi: connect?.sanctum?.[chain?.id]?.abi,
+    abi: connect?.nye?.abi,
     functionName: "createCampaign",
     args: [
       org?.id,

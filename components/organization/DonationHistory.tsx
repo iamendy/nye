@@ -11,9 +11,9 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
 
   const { data: donors, isLoading: isLoadingD } = useContractRead({
     //@ts-ignore
-    address: connect?.sanctum?.[chain?.id]?.address,
+    address: connect?.nye?.address,
     //@ts-ignore
-    abi: connect?.sanctum?.[chain?.id]?.abi,
+    abi: connect?.nye?.abi,
     functionName: "getCampaignDonors",
     args: [campaign?.id],
     watch: true,
@@ -77,7 +77,7 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
                 {parseFloat(
                   ethers?.formatUnits(donor?.amount || "0", 6)
                 ).toFixed(2)}{" "}
-                aUSDC
+                TORO
               </td>
               <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
                 {formatDate(donor?.date)}

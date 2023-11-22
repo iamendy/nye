@@ -17,9 +17,9 @@ const Dashboard = () => {
 
   const { data: usdcBal, isLoading: isLoadingBal } = useContractRead({
     //@ts-ignore
-    address: connect?.ausdc?.[chain?.id]?.address,
+    address: connect?.toro?.address,
     //@ts-ignore
-    abi: connect?.ausdc?.[chain?.id]?.abi,
+    abi: connect?.toro?.abi,
     functionName: "balanceOf",
     args: [address],
     watch: true,
@@ -27,9 +27,9 @@ const Dashboard = () => {
 
   const { data: orgB } = useContractRead({
     //@ts-ignore
-    address: connect?.sanctum?.[1442]?.address,
+    address: connect?.nye?.address,
     //@ts-ignore
-    abi: connect?.sanctum?.[1442]?.abi,
+    abi: connect?.nye?.abi,
     functionName: "orgs",
     args: [org?.id],
     watch: true,
@@ -55,65 +55,61 @@ const Dashboard = () => {
     <div className="flex flex-col gap-y-5">
       <div className="flex justify-between items-center">
         <h2 className="flex items-center gap-x-1 font-medium text-lg">
-          {org?.name} {org?.isVerified && <Verified />}{" "}
+          {org?.name} {org?.isApproved && <Verified />}{" "}
         </h2>
       </div>
 
-      {org?.isVerified ? (
-        <>
-          <div>
-            <div className="flex items-center justify-between max-w-2xl">
-              <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
-                <div className=" w-8 h-8 flex items-center justify-center rounded-full">
-                  <Raised />
-                </div>
-                <div>
-                  <b>
-                    {parseFloat(
-                      //@ts-ignore
-                      ethers?.formatUnits(usdcBal || "0", 6)
-                    ).toFixed(2)}
-                  </b>
-                  <p className="text-[14px]">aUSDC balance </p>
-                </div>
+      <div>
+        <div>
+          <div className="flex items-center justify-between max-w-2xl">
+            <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
+              <div className=" w-8 h-8 flex items-center justify-center rounded-full">
+                <Raised />
               </div>
-
-              <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
-                <div className=" w-8 h-8 flex items-center justify-center rounded-full">
-                  <Raised />
-                </div>
-                <div>
-                  <b>
-                    {
-                      //@ts-ignore
-                      parseFloat(
-                        //@ts-ignore
-                        ethers?.formatUnits(orgB?.[3] || "0", 6)
-                      )?.toFixed(2)
-                    }{" "}
-                    aUSDC
-                  </b>
-                  <p className="text-[14px]">Total Settlement </p>
-                </div>
+              <div>
+                <b>
+                  {parseFloat(
+                    //@ts-ignore
+                    ethers?.formatUnits(usdcBal || "0", 6)
+                  ).toFixed(2)}
+                </b>
+                <p className="text-[14px]">TORO balance </p>
               </div>
+            </div>
 
-              <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
-                <div className=" w-8 h-8 flex items-center justify-center rounded-full">
-                  <Pending />
-                </div>
-                <div>
-                  <b>{campaignCt}</b>
-                  <p className="text-[14px]"> Active campaigns</p>
-                </div>
+            <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
+              <div className=" w-8 h-8 flex items-center justify-center rounded-full">
+                <Raised />
+              </div>
+              <div>
+                <b>
+                  {
+                    //@ts-ignore
+                    parseFloat(
+                      //@ts-ignore
+                      ethers?.formatUnits(orgB?.[3] || "0", 6)
+                    )?.toFixed(2)
+                  }{" "}
+                  TORO
+                </b>
+                <p className="text-[14px]">Total Settlement </p>
+              </div>
+            </div>
+
+            <div className="bg-black/90 text-white rounded-xl p-4 shadow flex gap-x-2 items-center">
+              <div className=" w-8 h-8 flex items-center justify-center rounded-full">
+                <Pending />
+              </div>
+              <div>
+                <b>{campaignCt}</b>
+                <p className="text-[14px]"> Active campaigns</p>
               </div>
             </div>
           </div>
+        </div>
 
-          <CampaignTabs />
-        </>
-      ) : (
-        <MintCard />
-      )}
+        <CampaignTabs />
+      </div>
     </div>
   );
 };
