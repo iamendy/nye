@@ -1,10 +1,34 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "./IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Nye {
-  address public owner;
+interface IERC20 {
+  event Transfer(address indexed from, address indexed to, uint256 value);
+
+  event Approval(address indexed owner, address indexed spender, uint256 value);
+
+  function totalSupply() external view returns (uint256);
+
+  function balanceOf(address account) external view returns (uint256);
+
+  function transfer(address to, uint256 amount) external returns (bool);
+
+  function allowance(
+    address owner,
+    address spender
+  ) external view returns (uint256);
+
+  function approve(address spender, uint256 amount) external returns (bool);
+
+  function transferFrom(
+    address from,
+    address to,
+    uint256 amount
+  ) external returns (bool);
+}
+
+contract Nye is Ownable {
   address public toro = 0xff0dFAe9c45EeB5cA5d269BE47eea69eab99bf6C;
 
   struct Organization {
@@ -42,15 +66,6 @@ contract Nye {
 
   //holds all donors to a particular campaign
   mapping(string => Donor[]) public campaignDonors;
-
-  constructor() {
-    owner = msg.sender;
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == owner, "Not owner");
-    _;
-  }
 
   function registerOrg(string calldata _id) external {
     orgs[_id] = Organization({
