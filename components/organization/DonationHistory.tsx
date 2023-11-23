@@ -1,4 +1,4 @@
-import { useContractRead, useNetwork } from "wagmi";
+import { useContractRead } from "wagmi";
 import connect from "../../constants/connect";
 import { ethers } from "ethers";
 import formatDate from "../../helpers/formatDate";
@@ -7,8 +7,6 @@ import Donation from "../../types/Donation";
 import { Spinner } from "../icons";
 
 const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
-  const { chain } = useNetwork();
-
   const { data: donors, isLoading: isLoadingD } = useContractRead({
     //@ts-ignore
     address: connect?.nye?.address,

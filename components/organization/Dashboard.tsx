@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { OrgContext } from "../../contexts/OrgContext";
 import { Pending, Raised, Verified } from "../icons";
 import MintCard from "./MintCard";
@@ -24,6 +24,33 @@ const Dashboard = () => {
     args: [address],
     watch: true,
   });
+
+  var raw =
+    '{ "op":"getbalance", "params":[{"name":"addr", "value":"0x314ef41554dc423c88836dcdce55b3f61d1804b1"}] }';
+
+  var requestOptions = {
+    method: "GET",
+    body: raw,
+    redirect: "follow",
+  };
+
+  const getBalance = async () => {
+    const { data } = await axios.get(
+      "https://testnet.toronet.org/api/token/toro/",
+      {
+        params: {
+          op: "getbalance",
+          name: "addr",
+          value: "0xa2140490Ee061762cB781ad59F16e5268117a846",
+        },
+      }
+    );
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getBalance();
+  }, []);
 
   const { data: orgB } = useContractRead({
     //@ts-ignore
