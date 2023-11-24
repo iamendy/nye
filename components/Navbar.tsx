@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className={styles.menu}>
           <Menu />
 
-          <ConnectButton />
+          <ConnectButton showBalance={false} />
         </div>
       </div>
     </nav>

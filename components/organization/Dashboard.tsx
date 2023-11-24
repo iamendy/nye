@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { OrgContext } from "../../contexts/OrgContext";
 import { Pending, Raised, Verified } from "../icons";
 import MintCard from "./MintCard";
@@ -13,44 +13,44 @@ const Dashboard = () => {
   //@ts-ignore
   const { org } = useContext(OrgContext);
   const { address } = useAccount();
-  const { chain } = useNetwork();
 
-  const { data: usdcBal, isLoading: isLoadingBal } = useContractRead({
+  const { data: toroBal, isLoading: isLoadingBal } = useContractRead({
     //@ts-ignore
     address: connect?.toro?.address,
     //@ts-ignore
     abi: connect?.toro?.abi,
     functionName: "balanceOf",
+    account: address,
     args: [address],
     watch: true,
   });
 
-  var raw =
-    '{ "op":"getbalance", "params":[{"name":"addr", "value":"0x314ef41554dc423c88836dcdce55b3f61d1804b1"}] }';
+  // useEffect(() => {
+  //   async function fetchOrders() {
+  //     let zendmartItem: any = itemMulti();
+  //     let bal = await zendmartItem.balanceOf(address);
+  //     setBal(bal);
+  //   }
+  //   fetchOrders();
+  // }, [address]);
 
-  var requestOptions = {
-    method: "GET",
-    body: raw,
-    redirect: "follow",
-  };
+  // console.log(ethers.utils.formatEther(bal));
 
-  const getBalance = async () => {
-    const { data } = await axios.get(
-      "https://testnet.toronet.org/api/token/toro/",
-      {
-        params: {
-          op: "getbalance",
-          name: "addr",
-          value: "0xa2140490Ee061762cB781ad59F16e5268117a846",
-        },
-      }
-    );
-    console.log(data);
-  };
+  // const itemMulti = () => {
+  //   let provider = new ethers.providers.JsonRpcProvider(
+  //     "https://testnet.toronet.org/rpc/"
+  //   );
+  //   const signer = provider.getSigner(
+  //     "0x0dCDCeF127786cC71EF6658f24E7268Fe349cCB8"
+  //   );
 
-  useEffect(() => {
-    getBalance();
-  }, []);
+  //   const tokenContract = new ethers.Contract(
+  //     connect?.toro.address,
+  //     connect?.toro?.abi,
+  //     signer
+  //   );
+  //   return tokenContract;
+  // };
 
   const { data: orgB } = useContractRead({
     //@ts-ignore
@@ -58,6 +58,7 @@ const Dashboard = () => {
     //@ts-ignore
     abi: connect?.nye?.abi,
     functionName: "orgs",
+    account: address,
     args: [org?.id],
     watch: true,
   });
@@ -97,7 +98,7 @@ const Dashboard = () => {
                 <b>
                   {parseFloat(
                     //@ts-ignore
-                    ethers?.formatUnits(usdcBal || "0", 6)
+                    ethers?.utils?.formatEther(toroBal || "0")
                   ).toFixed(2)}
                 </b>
                 <p className="text-[14px]">TORO balance </p>
@@ -114,7 +115,7 @@ const Dashboard = () => {
                     //@ts-ignore
                     parseFloat(
                       //@ts-ignore
-                      ethers?.formatUnits(orgB?.[3] || "0", 6)
+                      ethers?.utils?.formatUnits(orgB?.[3] || "0", 6)
                     )?.toFixed(2)
                   }{" "}
                   TORO
