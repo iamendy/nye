@@ -18,7 +18,7 @@ import { useDebounce } from "../../../hooks/useDebounce";
 const Donate = () => {
   const router = useRouter();
   const { address } = useAccount();
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState("0.1");
   const [hasDonated, setHasDonated] = useState(false);
 
   const debouncedAmount = useDebounce<string>(amount, 500);
@@ -46,7 +46,7 @@ const Donate = () => {
     return data;
   };
 
-  debouncedAmount && console.log(ethers.utils?.parseEther(debouncedAmount));
+  //debouncedAmount && console.log(ethers.utils?.parseEther(debouncedAmount));
 
   const { mutate, isLoading } = useMutation({
     mutationFn: recordDonationdb,
@@ -68,21 +68,31 @@ const Donate = () => {
   });
 
   //---- approve ----//
-  const { config: approveConfig, refetch: refetchAp } = usePrepareContractWrite(
-    {
+  const {
+    config: approveConfig,
+    refetch: refetchAp,
+    error,
+  } = usePrepareContractWrite({
+    //@ts-ignore
+    address: connect?.toro?.address,
+    //@ts-ignore
+    abi: connect?.toro?.abi,
+    functionName: "approve",
+    enabled: true,
+    args: [
       //@ts-ignore
-      address: connect?.toro?.address,
-      //@ts-ignore
-      abi: connect?.toro?.abi,
-      functionName: "approve",
-      args: [
-        //@ts-ignore
-        connect?.nye?.address,
-        "1000000000000000000",
-        //ethers.utils?.parseEther(debouncedAmount || "0"),
-      ],
-    }
-  );
+      connect?.nye?.address,
+      //"1000000000000000000",
+      ethers.utils?.parseUnits(debouncedAmount || "0").toString(),
+    ],
+  });
+
+  // let costInWei = ethers?.BigNumber?.from(debouncedAmount);
+  // let costInEther = parseFloat(ethers.utils.formatEther(costInWei));
+  // let costEthers: any;
+
+  // console.log(costInEther);
+  // console.log(ethers.utils?.parseEther(debouncedAmount || "0"));
 
   const {
     write: approve,
@@ -113,8 +123,10 @@ const Donate = () => {
     account: address,
     functionName: "donateToCampaign",
     enabled: false,
-    //args: [campaign?.id, ethers.utils?.parseEther(debouncedAmount || "0")],
-    args: [campaign?.id, "100000000000000000"],
+    args: [
+      campaign?.id,
+      ethers.utils?.parseEther(debouncedAmount || "0").toString(),
+    ],
   });
 
   const {
@@ -144,12 +156,10 @@ const Donate = () => {
                 <Raised />
 
                 <b>
-                  {
+                  {parseFloat(
                     //@ts-ignore
-                    parseFloat(
-                      ethers?.utils?.formatEther(toroBal || "0")
-                    ).toFixed(2)
-                  }{" "}
+                    ethers?.utils?.formatEther(toroBal || "0")
+                  ).toFixed(2)}{" "}
                   TORO
                 </b>
               </div>
@@ -179,7 +189,7 @@ const Donate = () => {
                       id="amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                    ></input>
+                    />
                   </div>
                 </div>
 

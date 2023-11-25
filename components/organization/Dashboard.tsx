@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { OrgContext } from "../../contexts/OrgContext";
 import { Pending, Raised, Verified } from "../icons";
-import MintCard from "./MintCard";
-import { useAccount, useContractRead, useNetwork } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import connect from "../../constants/connect";
 import { ethers } from "ethers";
 import axios from "axios";

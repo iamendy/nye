@@ -5,7 +5,7 @@ import { useNetwork } from "wagmi";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const { chain } = useNetwork();
-  console.log(router?.pathname);
+
   return (
     <section className="pt-32 pb-24 px-[60px] h-full">
       <div className="flex gap-x-24 w-[80%] h-full">
@@ -45,7 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </h3>
 
                 <div>
-                  <p>Kindly switch to Polygon Zk, Celo, or FVM</p>
+                  <p>Kindly switch to Toronet</p>
                   <ul>
                     <li></li>
                   </ul>

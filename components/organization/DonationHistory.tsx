@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useAccount, useContractRead } from "wagmi";
 import connect from "../../constants/connect";
 import { ethers } from "ethers";
@@ -10,9 +11,8 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
   const { address } = useAccount();
 
   const { data: donors, isLoading: isLoadingD } = useContractRead({
-    //@ts-ignore
     address: connect?.nye?.address,
-    //@ts-ignore
+
     abi: connect?.nye?.abi,
     account: address,
     functionName: "getCampaignDonors",
@@ -23,13 +23,9 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
   const sumDonations = (donations: Donation[]) => {
     const total = donations.reduce((acc, donation) => {
       return acc + BigInt(donation.amount);
-      //@ts-ignore
     }, 0n);
 
-    return parseFloat(
-      //@ts-ignore
-      ethers?.utils?.formatEther(total)
-    ).toFixed(2);
+    return parseFloat(ethers?.utils?.formatEther(total)).toFixed(2);
   };
 
   return (
