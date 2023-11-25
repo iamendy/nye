@@ -2,6 +2,7 @@ import axios from "axios";
 import { Spinner, Verified } from "../icons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
+  useAccount,
   useContractRead,
   useContractWrite,
   useNetwork,
@@ -22,8 +23,8 @@ const BigCampaignCard = ({
   campaign: Campaign;
   isLoadingC: boolean;
 }) => {
-  const { chain } = useNetwork();
   const queryClient = useQueryClient();
+  const { address } = useAccount();
 
   const { data: camps } = useContractRead({
     //@ts-ignore
@@ -31,6 +32,7 @@ const BigCampaignCard = ({
     //@ts-ignore
     abi: connect?.nye?.abi,
     functionName: "getCampaignDonors",
+    account: address,
     args: [campaign?.id],
   });
 

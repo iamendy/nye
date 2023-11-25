@@ -16,6 +16,8 @@ const Approval = () => {
     queryFn: getPending,
   });
 
+  console.log(pendingOrgs);
+
   return (
     <div>
       <h3 className="font-medium mb-4">Pending Requests</h3>

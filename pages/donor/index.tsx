@@ -9,12 +9,12 @@ import Donation from "../../types/Donation";
 
 const Dashboard = () => {
   const { address } = useAccount();
-  const { chain } = useNetwork();
-  const { data: usdcBal, isLoading: isLoadingBal } = useContractRead({
+  const { data: toroBal, isLoading: isLoadingBal } = useContractRead({
     //@ts-ignore
     address: connect?.toro?.address,
     //@ts-ignore
     abi: connect?.toro?.abi,
+    account: address,
     functionName: "balanceOf",
     args: [address],
   });
@@ -55,7 +55,9 @@ const Dashboard = () => {
             <b>
               {
                 //@ts-ignore
-                parseFloat(ethers?.formatUnits(usdcBal || "0", 6)).toFixed(2)
+                parseFloat(ethers?.utils?.formatEther(toroBal || "0")).toFixed(
+                  2
+                )
               }
             </b>
             <p className="text-[14px]">TORO Bal</p>

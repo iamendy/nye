@@ -63,8 +63,6 @@ const Dashboard = () => {
     watch: true,
   });
 
-  orgB && console.log(orgB);
-
   //getter for fetching campaigns
   const fetchCampaigns = async () => {
     const { data } = await axios.get(
@@ -115,7 +113,7 @@ const Dashboard = () => {
                     //@ts-ignore
                     parseFloat(
                       //@ts-ignore
-                      ethers?.utils?.formatUnits(orgB?.[3] || "0", 6)
+                      ethers?.utils?.formatEther(orgB?.[3] || "0")
                     )?.toFixed(2)
                   }{" "}
                   TORO

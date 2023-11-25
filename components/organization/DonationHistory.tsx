@@ -1,4 +1,4 @@
-import { useContractRead } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import connect from "../../constants/connect";
 import { ethers } from "ethers";
 import formatDate from "../../helpers/formatDate";
@@ -7,11 +7,14 @@ import Donation from "../../types/Donation";
 import { Spinner } from "../icons";
 
 const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
+  const { address } = useAccount();
+
   const { data: donors, isLoading: isLoadingD } = useContractRead({
     //@ts-ignore
     address: connect?.nye?.address,
     //@ts-ignore
     abi: connect?.nye?.abi,
+    account: address,
     functionName: "getCampaignDonors",
     args: [campaign?.id],
     watch: true,
@@ -25,7 +28,7 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
 
     return parseFloat(
       //@ts-ignore
-      ethers?.formatUnits(total, 6)
+      ethers?.utils?.formatEther(total)
     ).toFixed(2);
   };
 
@@ -73,7 +76,7 @@ const DonationHistory = ({ campaign }: { campaign: Campaign }) => {
               </td>
               <td className="whitespace-nowrap text-sm px-4 py-4">
                 {parseFloat(
-                  ethers?.formatUnits(donor?.amount || "0", 6)
+                  ethers?.utils?.formatEther(donor?.amount || "0")
                 ).toFixed(2)}{" "}
                 TORO
               </td>

@@ -7,7 +7,6 @@ import {
   useAccount,
   useContractRead,
   useContractWrite,
-  useNetwork,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
@@ -18,7 +17,6 @@ import { useDebounce } from "../../../hooks/useDebounce";
 
 const Donate = () => {
   const router = useRouter();
-  const { chain } = useNetwork();
   const { address } = useAccount();
   const [amount, setAmount] = useState("");
   const [hasDonated, setHasDonated] = useState(false);
@@ -48,6 +46,8 @@ const Donate = () => {
     return data;
   };
 
+  debouncedAmount && console.log(ethers.utils?.parseEther(debouncedAmount));
+
   const { mutate, isLoading } = useMutation({
     mutationFn: recordDonationdb,
     onSuccess(d) {
@@ -61,6 +61,7 @@ const Donate = () => {
     address: connect?.toro?.address,
     //@ts-ignore
     abi: connect?.toro?.abi,
+    account: address,
     functionName: "balanceOf",
     args: [address],
     watch: true,
@@ -77,7 +78,8 @@ const Donate = () => {
       args: [
         //@ts-ignore
         connect?.nye?.address,
-        ethers.parseEther(debouncedAmount || "0"),
+        "1000000000000000000",
+        //ethers.utils?.parseEther(debouncedAmount || "0"),
       ],
     }
   );
@@ -108,11 +110,11 @@ const Donate = () => {
     address: connect?.nye?.address,
     //@ts-ignore
     abi: connect?.nye?.abi,
+    account: address,
     functionName: "donateToCampaign",
-    //@ts-ignore
-    value: ethers.parseEther(debouncedAmount || "0"),
     enabled: false,
-    args: [campaign?.id, ethers.parseEther(debouncedAmount || "0")],
+    //args: [campaign?.id, ethers.utils?.parseEther(debouncedAmount || "0")],
+    args: [campaign?.id, "100000000000000000"],
   });
 
   const {
@@ -144,9 +146,11 @@ const Donate = () => {
                 <b>
                   {
                     //@ts-ignore
-                    parseFloat(ethers?.formatEther(toroBal || "0")).toFixed(2)
+                    parseFloat(
+                      ethers?.utils?.formatEther(toroBal || "0")
+                    ).toFixed(2)
                   }{" "}
-                  TORI
+                  TORO
                 </b>
               </div>
 

@@ -1,7 +1,7 @@
 const connect = {
   //---- Nye ----//
   nye: {
-    address: "0x949C4Fa76ec09d50c8b46fcD2CB518DB98506CEC",
+    address: "0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3",
     abi: [
       {
         anonymous: false,
