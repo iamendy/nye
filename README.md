@@ -2,13 +2,13 @@
 
 Live Demo - [Watch now](https://drive.google.com/file/d/1Gm_kOwAU1xR5j1myty3N4dqLVPgq4jT0/view?usp=sharing) <br />
 dAPP Link - [Nyé dApp](https://nye-toro.vercel.app) <br />
-dAPP Link - [Nyé Presentation slides](https://nye-toro.vercel.app/nye-slides.pdf)
+Slides - [Nyé Presentation slides](https://nye-toro.vercel.app/nye-slides.pdf)
 
 ## ✨ Description
 
 Nyé creates a secure and transparent ecosystem for donors and NGOs. Users can donate on Toronet, and Nyé ensures it reaches the beneficiary wallet!
 
-[Nyé Smart contract](https://nye-toro.vercel.app) combines the speed, scalability and affordability of Toronet to allow users to donate to any cause using toro tokens.
+[Nyé](https://nye-toro.vercel.app) combines the speed, scalability and affordability of Toronet to allow users to donate to any cause using toro tokens.
 
 ![Nyé Dashboard](https://nye-toro.vercel.app/img/dashboard-preview.png)
 
@@ -16,7 +16,7 @@ Nyé creates a secure and transparent ecosystem for donors and NGOs. Users can d
 
 We created and deployed Nyé smart contract on Toronet
 
-1. Nye - [view on Toroscan](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
+1. Nye Smart contract - [view on Toroscan](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
 
 Here are some of the recent transactions on Nyé:
 
