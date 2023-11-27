@@ -43,7 +43,6 @@ const Dashboard = () => {
     <div className="flex flex-col gap-y-5">
       <div className="flex justify-between items-center">
         <h2>Hi {address?.substring(0, 8)},</h2>
-        <div className="text-right font-semibold">3 STK</div>
       </div>
 
       <div className="flex items-center gap-x-4">

@@ -1,7 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+//import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts@4.0.0/access/Ownable.sol";
 
 interface IERC20 {
   event Transfer(address indexed from, address indexed to, uint256 value);
