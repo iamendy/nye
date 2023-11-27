@@ -1,29 +1,32 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+# Nyé X Toronet [Techfiesta]
 
-## Getting Started
+Live Demo - [View on YouTube](https://www.youtube.com/watch?v=3U5IUajMpEc) <br />
+dAPP Link - [Nyé dApp](https://nye-toro.vercel.app) <br />
 
-First, run the development server:
+## ✨ Description
 
-```bash
-npm run dev
-```
+Nyé creates a secure and transparent ecosystem for donors and NGOs. Users can donate on Toronet, and Nyé ensures it reaches the beneficiary wallet!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Nyé](https://nye-toro.vercel.app) combines the speed, scalability and affordability of Toronet to allow users to donate to any cause using toro tokens.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+When users donate, they earn Nyé tokens that allow them to participate in the dApp's future and community.
 
-## Learn More
+![Nyé Dashboard](https://nye-toro.vercel.app/img/dashboard-preview.png)
 
-To learn more about this stack, take a look at the following resources:
+## 💻 How we built Nyé
 
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
+We created and deployed Nyé smart contract on Toronet
 
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
+1. Nye - [view on Toroscan](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
 
-## Deploy on Vercel
+Here are some of the recent transactions on Nyé:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1.  Campaign creation - [view donation tx](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
+2.  Donation on Nyé - [view donation tx](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
+3.  Withdrawal on Nyé - [view withdrawal tx](https://testnet.toronet.org/address.html?address=0x85f88714a9Bd14B6Da0c2a96a9D867Fb9c822FB3)
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This is an original work by our team. We built our solution using: **`NextJs/Typescript`**, **`Wagmi`**, **`Rainbowkit`**, **`Prisma`**, **`TailwindCSS`**, **`Remix`**, and **`PostgresSQL`**.
+
+## 💻 What next?
+
+1. Add support for ToroUSD, ToroEUR,and toroNGN to allow users donate from any token of their choice!

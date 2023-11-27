@@ -15,7 +15,7 @@ const Hero = () => {
             Nye brings onchain verifiable NGOs on one platform.
           </p>
           <p>
-            Donate with USD, NGN, EURo. We will ensure your donation is received
+            Donate with TORO. We will ensure your donation is received
             succesfully. Trustless charity!
           </p>
           <button className="action">
